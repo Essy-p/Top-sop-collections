@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        #myTable{
+            background-color: darkred;
+            color: gold;
+            width: 100%;
+            text-indent: 50px;
+            font-size: larger;
+            font-family: monospace;
+
+        }
+
+        #butt {
+            background-color: gold;
+            width: 100px;
+            height: 4vh;
+            border: 1px solid;
+            border-color: gold;
+            border-radius: 9px;
+            color: red;
+            font-family: monospace;
+            font-size: large;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: monospace; font-size: 50px; color: gold;">PAYMENT PAGE</h1>
+    <table id="myTable">
+        <thead>
+            <th>S/N</th>
+            <th>ITEM</th>
+            <th>QUANTITY</th>
+            <!-- <th>SIZE</th>
+            <th>COLOR</th> -->
+            <th>PRICE</th>
+            <th>TOTAL PRICE</th>
+        </thead>
+    </table>
+    <button onclick="myFunction()" id="butt">Checkout</button>
+</div>
+
+<script>
+    const cart = JSON.parse(sessionStorage.cart);
+    const cost = JSON.parse(sessionStorage.cost);
+    const quty = JSON.parse(sessionStorage.quty);
+    // const siz = JSON.parse(sessionStorage.siz);
+    // const col = JSON.parse(sessionStorage.col);
+    const tprice = JSON.parse(sessionStorage.tprice);
+
+    function myFunction() {
+
+
+        let text = "";
+        let grandTotal = 0;
+        for (let i = 0; i < cart.length; i++) {
+
+            var item = cart[i];
+            var uprice = cost[i];
+            var qty = quty[i];
+            // var szy = siz[i];
+            // var color = col[i];
+            var toprice = tprice[i];
+            var y = document.createElement("TR");
+            y.setAttribute("id", "myTr" + i);
+            document.getElementById("myTable").appendChild(y);
+
+            var sn = document.createElement("TD");
+            var t = document.createTextNode(i + 1);
+            sn.appendChild(t);
+            document.getElementById("myTr" + i).appendChild(sn);
+
+            var itm = document.createElement("TD");
+            var t = document.createTextNode(item);
+            itm.appendChild(t);
+            document.getElementById("myTr" + i).appendChild(itm);
+
+            var qtiy = document.createElement("TD");
+            var t = document.createTextNode(qty);
+            qtiy.appendChild(t);
+            document.getElementById("myTr" + i).appendChild(qtiy);
+
+            // var sizess = document.createElement("TD");
+            // var t = document.createTextNode(sizess);
+            // sizess.appendChild(t);
+            // document.getElementById("myTr" + i).appendChild(sizess);
+
+            // var clr = document.createElement("TD");
+            // var t = document.createTextNode(clr);
+            // clr.appendChild(t);
+            // document.getElementById("myTr" + i).appendChild(clr);
+
+            var pri = document.createElement("TD");
+            var t = document.createTextNode(uprice);
+            pri.appendChild(t);
+            document.getElementById("myTr" + i).appendChild(pri);
+
+            var tpr = document.createElement("TD");
+            var t = document.createTextNode(toprice);
+            tpr.appendChild(t);
+            document.getElementById("myTr" + i).appendChild(tpr);
+
+            grandTotal = grandTotal + toprice;
+        }
+        
+        var y = document.createElement("TR");
+        y.setAttribute("id", "tot");
+        document.getElementById("myTable").appendChild(y);
+
+        var sn = document.createElement("TD");
+        var t = document.createTextNode("");
+        sn.appendChild(t);
+        document.getElementById("tot").appendChild(sn);
+
+        var itm = document.createElement("TD");
+        var t = document.createTextNode("TOTAL");
+        itm.appendChild(t);
+        document.getElementById("tot").appendChild(itm);
+
+        var qty = document.createElement("TD");
+        var t = document.createTextNode("");
+        qty.appendChild(t);
+        document.getElementById("tot").appendChild(qty);
+
+        // var sizess = document.createElement("TD");
+        // var t = document.createTextNode("");
+        // sizess.appendChild(t);
+        // document.getElementById("tot").appendChild(sizess);
+
+        // var clr = document.createElement("TD");
+        // var t = document.createTextNode("");
+        // clr.appendChild(t);
+        // document.getElementById("tot").appendChild(clr);
+
+        var pri = document.createElement("TD");
+        var t = document.createTextNode("");
+        pri.appendChild(t);
+        document.getElementById("tot").appendChild(pri);
+
+        var tpr = document.createElement("TD");
+        var t = document.createTextNode(grandTotal);
+        tpr.appendChild(t);
+        document.getElementById("tot").appendChild(tpr);
+
+    }
+
+</script>
+</body>
+</html>
