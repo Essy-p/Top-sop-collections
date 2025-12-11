@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEANS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fdfdfd;
+        }
+
+        #head {
+            font-family: monospace;
+            font-size: larger;
+            color: gold;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: darkred;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: gold;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            color: white;
+        }
+
+        /* Checkout button */
+        .checkout-btn {
+            background: gold;
+            color: darkred;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            z-index: 1;
+            box-shadow: 3px;
+            color: white;
+        }
+
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        #naira {
+            text-decoration: line-through double;
+        }
+
+        /* Grid layout */
+        .jeans-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            /* padding: 20px; */
+        }
+
+        .jeans-card {
+            flex: 1 1 250px;
+            max-width: 250px;
+            background: bisque;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* display: flex;
+            flex-direction: column;
+            align-items: center; */
+        }
+
+        /* Dress Images */
+        .jeans-img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Dress info */
+        .jeans-info {
+            text-align: left;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .jeans-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        /* Size Dropdown */
+        select {
+            margin: 8px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .color-options {
+            margin: 8px 0;
+        }
+
+        .color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            margin: 3px;
+            border: 1px solid #333;
+        }
+
+        .color-dot.sky-blue {
+            background: rgba(20, 100, 100, 0.897);
+        }
+
+        .color-dot.purple {
+            background: rgb(124, 0, 128);
+        }
+
+        .color-dot.black {
+            background: black;
+        }
+
+        .color-dot.grey {
+            background: grey;
+        }
+
+        /* Responsive text */
+        @media (max-width: 600px) {
+            .jeans-card {
+                max-width: 90%;
+            }
+
+            .jeans-price {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                max-height: 0;
+                overflow: hidden;
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+                margin-top: 10px;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-right {
+                margin-top: 10px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        input {
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <h1>TOPSOP COLLECTION</h1>
+    </div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">&#9776;</button>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./tops.html">Tops</a></li>
+            <li><a href="./jeans.html">Jeans</a></li>
+            <li><a href="./dresses3.html">Dresses</a></li>
+            <li><a href="./twopiece.html">Two piece</a></li>
+            <li><a href="./trousers.html">Trousers</a></li>
+            <li><a href="./shoes.html">Shoes</a></li>
+            <li><a href="./bags.html">Bags</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </nav>
+    <div class="jeans-container">
+        <div class="jeans-card">
+            <img src="../images/jeans/baggy jeans.jpg" alt="Baggy Jeans" class="jeans-img" id="img1">
+
+            <div class="jeans-info">
+                <p id="item">Sky-blue Baggy Jeans</p>
+                <p class="jeans-price">Price: <span id="naira">N</span><span id="uprice">15,000</span></p>
+                <label for="">Available Qty: 4</label>
+                <input type="number" id="jeans1q" onchange="editQty(this.value, 'Sky-blue Baggy Jeans')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size1">Available Size: 12-16</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot sky-blue" data-target="img1"
+                        data-src="../images/jeans/baggy jeans.jpg"></span>
+                </div>
+                <center>
+                    <label for="jeans1">Add to Cart</label>
+                    <input type="checkbox" name="jeans1" id="jeans1" onchange="add('jeans1', 'Sky-blue Baggy Jeans',
+                        'Sky-blue', 15000)">
+                </center>
+
+            </div>
+        </div>
+        <div class="jeans-card">
+            <img src="../images/jeans/purple cargo jeans.jpg" alt="Cargo Jeans" class="jeans-img" id="img2">
+
+            <div class="jeans-info">
+                <p id="item">Purple Cargo Jeans</p>
+                <p class="jeans-price">Price: <span id="naira">N</span><span id="uprice">18,000</span></p>
+                <label for="">Available Qty: 2</label>
+                <input type="number" id="jeans2q" onchange="editQty(this.value, 'Purple Cargo Jeans')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size2">Available Size: 10-14</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot purple" data-target="img2"
+                        data-src="../images/jeans/purple cargo jeans.jpg"></span>
+                </div>
+                <center>
+                    <label for="jeans2">Add to Cart</label>
+                    <input type="checkbox" name="jeans2" id="jeans2" onchange="add('jeans2', 'Purple Cargo Jeans',
+                        'Purple', 18000)">
+                </center>
+
+            </div>
+        </div>
+        <div class="jeans-card">
+            <img src="../images/jeans/Black baggy Parachute jeans.jpg" alt="Parachute Baggy Jeans" class="jeans-img"
+                id="img3">
+
+            <div class="jeans-info">
+                <p id="item">Black Baggy Jeans</p>
+                <p class="jeans-price">Price: <span id="naira">N</span><span>16,000</span></p>
+                <label for="">Available Qty: 4</label>
+                <input type="number" id="jeans3q" onchange="editQty(this.value, 'Black Baggy Jeans')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size3">Available Size: 10-14</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot black" data-target="img3"
+                        data-src="../images/jeans/Black baggy Parachute jeans.jpg"></span>
+                </div>
+                <center>
+                    <label for="jeans3">Add to Cart</label>
+                    <input type="checkbox" name="jeans3" id="jeans3" onchange="add('jeans3', 'Black Baggy Jeans',
+                        'Black', 16000)">
+                </center>
+
+            </div>
+        </div>
+        <div class="jeans-card">
+            <img src="../images/jeans/Grey baggy jeans.jpg" alt="Grey Baggy Jeans" class="jeans-img" id="img4">
+
+            <div class="jeans-info">
+                <p id="item">Grey Baggy Jeans</p>
+                <p class="jeans-price">Price: <span id="naira">N</span><span>21,000</span></p>
+                <label for="">Available Qty: 4</label>
+                <input type="number" id="jeans4q" onchange="editQty(this.value, 'Grey Baggy Jeans')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size4">Available Size: 10-18</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                    <option value="18">18</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot grey" data-target="img4"
+                        data-src="../images/jeans/Grey baggy jeans.jpg"></span>
+                </div>
+                <center>
+                    <label for="jeans4">Add to Cart</label>
+                    <input type="checkbox" name="jeans4" id="jeans4" onchange="add('jeans4', 'Grey Baggy Jeans',
+                        'Black', 21000)">
+                </center>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let cart = [];
+    let quty = [];
+    let cost = [];
+    let tprice = [];
+    let col = [];
+    let siz = [];
+
+    //Fuction to add or remove items from cart
+    function add(ele, item, color, uprice) {
+        const elem = document.getElementById(ele);
+        const qelem = ele + "q";
+        const qty = document.getElementById(qelem).value;
+        const toprice = qty * uprice;
+
+        //Get the size from the dropdown inside the same dress card
+        const sizeSelect = elem.closest(".jeans-card").querySelector(".size");
+        const szy = sizeSelect ? sizeSelect.value : "none";
+
+        if (elem.checked) {
+            if (toprice <= 0 || szy === "none") {
+                alert("Please, select a valid quantity and size before you order");
+                elem.checked = false;
+                return;
+            }
+
+            cart.push(item);
+            quty.push(qty);
+            cost.push(uprice);
+            tprice.push(toprice);
+            col.push(color);
+            siz.push(szy);
+        } else {
+            // Remove the item if unchecked
+            for (let x = 0; x < cart.length; x++) {
+                if (cart[x] === item) {
+                    cart.splice(x, 1);
+                    quty.splice(x, 1);
+                    cost.splice(x, 1);
+                    tprice.splice(x, 1);
+                    col.splice(x, 1);
+                    siz.splice(x, 1);
+                    break;
+
+
+                }
+
+            }
+
+        }
+    }
+
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Your cart is empty. Please select an item first");
+            return;
+        }
+
+        let summary = "These are the items in your cart:\n\n";
+        for (let i = 0; i < cart.length; i++) {
+            summary += `Item: ${cart[i]}\n`;
+            summary += `Color: ${col[i]}\n`;
+            summary += `Size: ${siz[i]}\n`;
+            summary += `Quantity: ${quty[i]}\n`;
+            summary += `Unit Price: ${cost[i]}\n`;
+            summary += `Total: ${tprice[i]}\n\n`;
+        }
+
+        const confirmCheckout = confirm(summary + "Proceed to checkout page?");
+        if (confirmCheckout) {
+            //Check if there's already a saved cart in localstorage
+
+            let existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingCost = JSON.parse(localStorage.getItem("cost")) || [];
+            let existingQuty = JSON.parse(localStorage.getItem("quty")) || [];
+            let existingSiz = JSON.parse(localStorage.getItem("siz")) || [];
+            let existingCol = JSON.parse(localStorage.getItem("col")) || [];
+            let existingTprice = JSON.parse(localStorage.getItem("tprice")) || [];
+
+            //Combines existing cart with new items
+            localStorage.setItem("cart", JSON.stringify(existingCart.concat(cart)));
+            localStorage.setItem("cost", JSON.stringify(existingCost.concat(cost)));
+            localStorage.setItem("quty", JSON.stringify(existingQuty.concat(quty)));
+            localStorage.setItem("siz", JSON.stringify(existingSiz.concat(siz)));
+            localStorage.setItem("col", JSON.stringify(existingCol.concat(col)));
+            localStorage.setItem("tprice", JSON.stringify(existingTprice.concat(tprice)));
+
+            // Then redirect to checkout
+            window.location.href = "checkoutpage.html";
+        }
+
+        // console.log("Checkout clicked");
+
+    }
+
+
+    // Hamburger function
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+
+        // Toggle hamburger icon between the three lines and X
+        if (navLinks.classList.contains("active")) {
+            hamburger.innerHTML = "&times;"; //This turns the hamburger menu to X which means close
+        } else {
+            hamburger.innerHTML = "&#9776;"; // This turns it to the hamburger menu icon
+        }
+    });
+    // color function
+    document.querySelectorAll(".color-dot").forEach(dot => {
+        dot.addEventListener("click", () => {
+            const targetId = dot.dataset.target;
+            const newSrc = dot.dataset.src;
+            document.getElementById(targetId).src = newSrc;
+        });
+    });
+
+    function shoy(selectElement) {
+        let value = selectElement.value;
+        alert(value);
+    }
+
+    function show(selectElement) {
+        let value = selectElement.value;
+        alert(value);
+
+        if (value === "select") {
+            alert("Please select the quantity");
+            return;
+        }
+    }
+</script>
+
+</html>

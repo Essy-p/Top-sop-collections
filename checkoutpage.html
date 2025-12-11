@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+
+    <style>
+        h1 {
+            color: gold;
+            font-family: monospace;
+            font-size: xx-large;
+        }
+
+        #myTable {
+            background-color: darkred;
+            color: gold;
+            width: 100%;
+            text-indent: 50px;
+            font-size: larger;
+            font-family: monospace;
+            border-collapse: collapse;
+            text-align: center;
+
+        }
+
+        #butt {
+            background-color: gold;
+            width: 100px;
+            height: 4vh;
+            border: 1px solid;
+            border-color: gold;
+            border-radius: 9px;
+            color: red;
+            font-family: monospace;
+            font-size: large;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        #butt:hover {
+            color: white;
+        }
+
+        th {
+            border: 2px gold solid;
+            text-align: center;
+        }
+
+        tr,
+        td {
+            border: 2px gold solid;
+
+        }
+    </style>
+</head>
+
+<body onload="myFunction()">
+    <h1>PAYMENT PAGE</h1>
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>COLOR</th>
+                <th>SIZE</th>
+                <th>UNIT PRICE</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align: right;"><strong>Grand Total:</strong></td>
+                <td id="grandTotal"></td>
+            </tr>
+        </tfoot>
+    </table>
+    <button id="butt">Checkout</button>
+</body>
+
+<script>
+
+    function myFunction() {
+        //Get all data saved from the dress page
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cost = JSON.parse(localStorage.getItem("cost")) || [];
+        const quty = JSON.parse(localStorage.getItem("quty")) || [];
+        const siz = JSON.parse(localStorage.getItem("siz")) || [];
+        const col = JSON.parse(localStorage.getItem("col")) || [];
+        const tprice = JSON.parse(localStorage.getItem("tprice")) || [];
+
+        localStorage.clear();
+
+        const tableBody = document.getElementById("tableBody");
+        let totalAmount = 0;
+
+        //Clear previous data
+        tableBody.innerHTML = " ";
+
+        //If cart is empty
+        if (cart.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No items selected yet.</td></tr>`;
+            return;
+        }
+
+        //Loop through items
+        for (let i = 0; i < cart.length; i++) {
+            const row = document.createElement("tr");
+
+            const nameCell = document.createElement("td");
+            nameCell.textContent = cart[i];
+
+            const colorCell = document.createElement("td");
+            colorCell.textContent = col[i];
+
+            const sizeCell = document.createElement("td");
+            sizeCell.textContent = siz[i];
+
+            const priceCell = document.createElement("td");
+            priceCell.textContent = cost[i].toLocaleString();
+
+            const qtyCell = document.createElement("td");
+            qtyCell.textContent = quty[i];
+
+            const totalCell = document.createElement("td");
+            totalCell.textContent = tprice[i].toLocaleString();
+
+            row.appendChild(nameCell);
+            row.appendChild(colorCell);
+            row.appendChild(sizeCell);
+            row.appendChild(priceCell);
+            row.appendChild(qtyCell);
+            row.appendChild(totalCell);
+            tableBody.appendChild(row);
+
+            totalAmount += parseFloat(tprice[i]);
+        }
+
+        //Display grand total
+
+        document.getElementById("grandTotal").textContent = totalAmount.toLocaleString();
+
+
+
+    }
+</script>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION</title>
+
+    <style>
+        body {
+            margin: 0;
+            width: 100%;
+            max-width: 1500px;
+            background-color: gold;
+        }
+
+        #myForm {
+            /* display: grid;
+            grid-template-columns: 1 1;
+            grid-template-rows: 1 1; */
+             /* display: flex;
+            flex-wrap: wrap;  */
+            background-color: darkred;
+            width: 30%;
+            height: 50vh;
+            position: relative;
+            top: 70px;
+            left: 450px;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+        h2 {
+            padding-top: 10px;
+            border-bottom: 3px solid;
+            text-align: center;
+        }
+
+        span {
+            color: red;
+        }
+
+        label {
+            padding-left: 10px;
+            font-weight: bold;
+        }
+
+        #butt{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: gold;
+            color: white;
+            font-size: large;
+            font-weight: bold;
+            border: gold;
+            border-radius: 5px;
+            width: 100px;
+        }
+
+        #butt:hover{
+            background-color: darkred;
+            border-bottom: 3px solid gold;
+        }
+
+        /* Responsive media */
+    @media (max-width: 600px){
+        #myForm{
+            width: 50%;
+            height: 50vh;
+        }
+        input{
+            width: 100px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <form action="" id="myForm">
+        <h2>Become a Customer</h2>
+        <label for="name">Full name <span>*</span></label>
+        <input type="text" placeholder="Insert name">
+        <br>
+        <br>
+        <label for="userName">Preferred Username <span>*</span></label>
+        <input type="text" placeholder="Insert username">
+        <br>
+        <br>
+        <label for="passWord">Password <span>*</span></label>
+        <input type="password" placeholder="Please insert password">
+        <br>
+        <br>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password">
+        <br>
+        <br>
+        <center>
+            <button id="butt" onclick="submit()">Register</button>
+        </center>
+        
+
+    </form>
+
+
+</body>
+
+</html>

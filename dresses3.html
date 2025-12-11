@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRESSES</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fdfdfd;
+        }
+
+        #head {
+            font-family: monospace;
+            font-size: larger;
+            color: gold;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: darkred;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: gold;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar li a:hover {
+            color: white;
+        }
+
+        /* Checkout button */
+        .checkout-btn {
+            background: gold;
+            color: darkred;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            z-index: 1;
+            box-shadow: 3px;
+            color: white;
+        }
+
+        /* Hamburger button */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        #naira {
+            text-decoration: line-through double;
+        }
+
+        /* Grid layout */
+        .dress-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            /* padding: 20px; */
+        }
+
+        .dress-card {
+            flex: 1 1 250px;
+            max-width: 250px;
+            background: bisque;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* display: flex;
+            flex-direction: column;
+            align-items: center; */
+        }
+
+        /* Dress Images */
+        .dress-img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Dress info */
+        .dress-info {
+            text-align: left;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .dress-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        /* Size Dropdown */
+        select {
+            margin: 8px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Color dots */
+        .color-options {
+            margin: 8px 0;
+        }
+
+        .color-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            margin: 3px;
+            border: 1px solid #333;
+        }
+
+        .color-dot.navy-green {
+            background: rgb(109, 128, 0);
+        }
+
+        .color-dot.black {
+            background: black;
+        }
+
+        .color-dot.brown {
+            background: brown;
+        }
+
+        .color-dot.peach {
+            background: peachpuff;
+        }
+
+        .color-dot.white {
+            background: white;
+        }
+
+
+
+        /* Responsive text */
+        @media (max-width: 600px) {
+            .dress-card {
+                max-width: 90%;
+            }
+
+            .dress-price {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                max-height: 0;
+                overflow: hidden;
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+                margin-top: 10px;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                max-height: 300px;
+            }
+
+            .nav-right {
+                margin-top: 10px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        input {
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="head">
+        <h1>TOPSOP COLLECTION</h1>
+    </div>
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="hamburger" id="hamburger">&#9776;</button>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./tops.html">Tops</a></li>
+            <li><a href="./jeans.html">Jeans</a></li>
+            <li><a href="./dresses3.html">Dresses</a></li>
+            <li><a href="./twopiece.html">Two piece</a></li>
+            <li><a href="./trousers.html">Trousers</a></li>
+            <li><a href="./shoes.html">Shoes</a></li>
+            <li><a href="./bags.html">Bags</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </nav>
+    <div class="dress-container">
+        <div class="dress-card">
+            <img src="../images/dresses/navy-green.jpg" alt="navy-green dress" class="dress-img" id="img1">
+
+            <div class="dress-info">
+                <p id="item">Navy-green Shirt Dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">15,000</span></p>
+                <label for="">Available Qty: 4</label>
+                <input type="number" id="dress1q" onchange="editQty(this.value, 'Navy-green shirt dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size1">Available Size: 12-16</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot navy-green" data-target="img1"
+                        data-src="../images/dresses/navy-green.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress1">Add to Cart</label>
+                    <input type="checkbox" name="dress1" id="dress1" onchange="add('dress1', 'Navy-green shirt dress',
+                        'Navy-green', 15000)">
+                </center>
+
+            </div>
+        </div>
+        <div class="dress-card">
+            <img src="../images/dresses/Black polka dot design dress.jpg" alt="Black polkadot dress" class="dress-img"
+                id="img2">
+
+            <div class="dress-info">
+                <p id="item">Black Polkadot wrap dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">12,000</span></p>
+                <label for="">Available Qty: 3</label>
+                <input type="number" id="dress2q" onchange="editQty(this.value, 'Polkadot dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size2">Available Size: 10-14</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot black" data-target="img2"
+                        data-src="../images/dresses/Black polka dot design dress.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress2">Add to Cart</label>
+                    <input type="checkbox" name="dress2" id="dress2" onchange="add('dress2', 'Polkadot dress', 
+                    'Black', 12000)">
+                </center>
+
+            </div>
+
+        </div>
+        <div class="dress-card">
+            <img src="../images/dresses/Brown V-neck dress.jpg" alt="Brown V-neck dress" class="dress-img" id="img3">
+
+            <div class="dress-info">
+                <p id="item">Brown V-neck dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">17,000</span></p>
+                <label for="">Available Qty: 3</label>
+                <input type="number" id="dress3q" onchange="editQty(this.value, 'V-neck dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size3">Available Size: 10-16</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                    <option value="16">16</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot brown" data-target="img3"
+                        data-src="../images/dresses/Brown V-neck dress.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress3">Add to Cart</label>
+                    <input type="checkbox" name="dress3" id="dress3"
+                        onchange="add('dress3', 'V-neck dress', 'Brown', 17000)">
+                </center>
+
+            </div>
+
+        </div>
+        <div class="dress-card">
+            <img src="../images/dresses/Peplon floral dress.jpg" alt="White Peplon dress" class="dress-img" id="img4">
+
+            <div class="dress-info">
+                <p id="item">White Peplon dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">10,000</span></p>
+                <label for="">Available Qty: 3</label>
+                <input type="number" id="dress4q" onchange="editQty(this.value, 'White Peplon dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size4">Available Size: 10-14</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot white" data-target="img4"
+                        data-src="../images/dresses/Peplon floral dress.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress4">Add to Cart</label>
+                    <input type="checkbox" name="dress4" id="dress4"
+                        onchange="add('dress4', 'White Peplon dress', 'Peach', 10000)">
+                </center>
+
+            </div>
+
+        </div>
+        <div class="dress-card">
+            <img src="../images/dresses/Pink and black floral dress.jpg" alt="Pink-black floral dress" class="dress-img"
+                id="img5">
+
+            <div class="dress-info">
+                <p id="item">Floral dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">15,000</span></p>
+                <label for="">Available Qty: 4</label>
+                <input type="number" id="dress5q" onchange="editQty(this.value, 'Floral dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size5">Available Size: 10-14</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot black" data-target="img5"
+                        data-src="../images/dresses/Peplon floral dress.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress5">Add to Cart</label>
+                    <input type="checkbox" name="dress5" id="dress5"
+                        onchange="add('dress5', 'Floral dress', 'Black', 15000)">
+                </center>
+
+            </div>
+
+        </div>
+        <div class="dress-card">
+            <img src="../images/dresses/Coffe brown dress.jpg" alt="Black dress" class="dress-img" id="img6">
+
+            <div class="dress-info">
+                <p id="item">Black dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">12,000</span></p>
+                <label for="">Available Qty: 2</label>
+                <input type="number" id="dress6q" onchange="editQty(this.value, 'Black dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size6">Available Size: 10-12</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot black" data-target="img6"
+                        data-src="../images/dresses/Coffe brown dress.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress6">Add to Cart</label>
+                    <input type="checkbox" name="dress6" id="dress6"
+                        onchange="add('dress6', 'Black dress', 'Black', 12000)">
+                </center>
+
+            </div>
+
+        </div>
+        <div class="dress-card">
+            <img src="../images/dresses/White dress.jpg" alt="White dress" class="dress-img" id="img7">
+
+            <div class="dress-info">
+                <p id="item">White dress</p>
+                <p class="dress-price">Price: <span id="naira">N</span><span id="uprice">14,000</span></p>
+                <label for="">Available Qty: 2</label>
+                <input type="number" id="dress7q" onchange="editQty(this.value, 'White dress')">
+                <br>
+
+                <!-- SIZE -->
+                <label for="size7">Available Size: 10-14</label>
+                <select class="size" name="size" onchange="shoy(this)">
+                    <option value="none">Select</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                    <option value="14">14</option>
+                </select>
+
+                <div class="color-options">
+                    <span class="color-dot white" data-target="img7"
+                        data-src="../images/dresses/White dress.jpg"></span>
+                </div>
+                <center>
+                    <label for="dress7">Add to Cart</label>
+                    <input type="checkbox" name="dress7" id="dress7"
+                        onchange="add('dress7', 'White dress', 'White', 14000)">
+                </center>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script>
+    let cart = [];
+    let quty = [];
+    let cost = [];
+    let tprice = [];
+    let col = [];
+    let siz = [];
+
+    //Fuction to add or remove items from cart
+    function add(ele, item, color, uprice) {
+        const elem = document.getElementById(ele);
+        const qelem = ele + "q";
+        const qty = document.getElementById(qelem).value;
+        const toprice = qty * uprice;
+
+        //Get the size from the dropdown inside the same dress card
+        const sizeSelect = elem.closest(".dress-card").querySelector(".size");
+        const szy = sizeSelect ? sizeSelect.value : "none";
+
+        if (elem.checked) {
+            if (toprice <= 0 || szy === "none") {
+                alert("Please, select a valid quantity and size before you order");
+                elem.checked = false;
+                return;
+            }
+
+            cart.push(item);
+            quty.push(qty);
+            cost.push(uprice);
+            tprice.push(toprice);
+            col.push(color);
+            siz.push(szy);
+        } else {
+            // Remove the item if unchecked
+            for (let x = 0; x < cart.length; x++) {
+                if (cart[x] === item) {
+                    cart.splice(x, 1);
+                    quty.splice(x, 1);
+                    cost.splice(x, 1);
+                    tprice.splice(x, 1);
+                    col.splice(x, 1);
+                    siz.splice(x, 1);
+                    break;
+
+
+                }
+
+            }
+
+        }
+    }
+
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Your cart is empty. Please select an item first");
+            return;
+        }
+
+        let summary = "These are the items in your cart:\n\n";
+        for (let i = 0; i < cart.length; i++) {
+            summary += `Item: ${cart[i]}\n`;
+            summary += `Color: ${col[i]}\n`;
+            summary += `Size: ${siz[i]}\n`;
+            summary += `Quantity: ${quty[i]}\n`;
+            summary += `Unit Price: ${cost[i]}\n`;
+            summary += `Total: ${tprice[i]}\n\n`;
+        }
+
+        const confirmCheckout = confirm(summary + "Proceed to checkout page?");
+        if (confirmCheckout) {
+            //Check if there's already a saved cart in localstorage
+
+            let existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingCost = JSON.parse(localStorage.getItem("cost")) || [];
+            let existingQuty = JSON.parse(localStorage.getItem("quty")) || [];
+            let existingSiz = JSON.parse(localStorage.getItem("siz")) || [];
+            let existingCol = JSON.parse(localStorage.getItem("col")) || [];
+            let existingTprice = JSON.parse(localStorage.getItem("tprice")) || [];
+
+            //Combines existing cart with new items
+            localStorage.setItem("cart", JSON.stringify(existingCart.concat(cart)));
+            localStorage.setItem("cost", JSON.stringify(existingCost.concat(cost)));
+            localStorage.setItem("quty", JSON.stringify(existingQuty.concat(quty)));
+            localStorage.setItem("siz", JSON.stringify(existingSiz.concat(siz)));
+            localStorage.setItem("col", JSON.stringify(existingCol.concat(col)));
+            localStorage.setItem("tprice", JSON.stringify(existingTprice.concat(tprice)));
+
+
+            // Then redirect to checkout
+            window.location.href = "checkoutpage.html";
+        }
+
+    }
+
+
+    // Hamburger function
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+
+        // Toggle hamburger icon between the three lines and X
+        if (navLinks.classList.contains("active")) {
+            hamburger.innerHTML = "&times;"; //This turns the hamburger menu to X which means close
+        } else {
+            hamburger.innerHTML = "&#9776;"; // This turns it to the hamburger menu icon
+        }
+    });
+    // color function
+    document.querySelectorAll(".color-dot").forEach(dot => {
+        dot.addEventListener("click", () => {
+            const targetId = dot.dataset.target;
+            const newSrc = dot.dataset.src;
+            document.getElementById(targetId).src = newSrc;
+        });
+    });
+
+    function shoy(selectElement) {
+        let value = selectElement.value;
+        alert(value);
+    }
+
+    function show(selectElement) {
+        let value = selectElement.value;
+        alert(value);
+
+        if (value === "select") {
+            alert("Please select the quantity");
+            return;
+        }
+    }
+
+
+
+</script>
+
+</html>
